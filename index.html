@@ -11,18 +11,19 @@
         <h3>Image color picker</h3>
         <div class="image-container">
             <div class="file-button">
-                <input type="file" id="file" accesskey="image/*">
+                <input type="file" class="file" accept="image/*">
             </div>
+            <img id="selectedImage" alt="Selected Image" style="display:none;">
         </div>
         <div class="btns-container">
-            <button class="upload">Upload Image</button>
+            <button class="upload block" onclick="uploadButtonClick()">Upload<input type="file" class="file2" accept="image/*" > </button>
             <button class="pick-color-btn">Pick Color</button>
         </div>
         <div class="details-container">
-            <input type="text" disabled>
-            <button class="copy">Copy</button>
+            <input type="text" class="hexValueContainer" disabled>
+            <button class="copy block">Copy</button>
         </div>
     </div>
-    
+    <script src="script.js"></script>
 </body>
 </html>
