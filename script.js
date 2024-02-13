@@ -4,23 +4,23 @@ const pickColor = document.querySelector('.pick-color-btn');
 const copy = document.querySelector('.copy');
 const upload = document.querySelector('.upload');
 const hexValueContainer = document.querySelector('.hexValueContainer');
-
+const browserSupport = document.querySelector('.unsupported');
 if (window.EyeDropper == undefined) {
-    console.log('EyeDropper API not supported on this platform')
+    browserSupport.style.display = 'block';
 }
 
-// let eyeDropper = new EyeDropper();
+let eyeDropper = new EyeDropper();
 
-// pickColor.addEventListener('click', (e)=> {
-//     eyeDropper.open()
-//     .then(colorSelectionResult => {
-//         // return hex value
-//         console.log(colorSelectionResult.sRGBHex)
-//     })
-//     .catch(error => {
-//         alert(error)
-//     })
-// })
+pickColor.addEventListener('click', (e)=> {
+    eyeDropper.open()
+    .then(colorSelectionResult => {
+        // return hex value
+        hexValueContainer.value = colorSelectionResult.sRGBHex;
+    })
+    .catch(error => {
+        alert(error)
+    })
+})
 
 const fileButton = document.querySelector('.file-button');
 const file = document.querySelector('.file');
@@ -42,5 +42,23 @@ file.addEventListener('change', function (event) {
         selectedImage.style.display = 'block';
         imageContainer.removeChild(fileButton);
         upload.classList.remove('block');
+    }
+});
+
+const errorMessage = document.querySelector('.message');
+copy.addEventListener('click', function () {
+    if (hexValueContainer.value) {
+        const hexValue = hexValueContainer.value;
+        errorMessage.style.backgroundColor = 'lime';
+        errorMessage.innerText = 'Copied!'
+    navigator.clipboard.writeText(hexValue)
+        .then(() => {
+            console.log("Text copied to clipboard");
+        })
+        .catch((err) => {
+            console.error("Error copying text to clipboard: ", err);
+        });
+    } else {
+        errorMessage.style.display = 'flex';
     }
 });

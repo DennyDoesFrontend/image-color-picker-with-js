@@ -14,7 +14,6 @@ body {
 .container {
     position: absolute;
     left: 50%;
-    width: 70%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
@@ -25,14 +24,35 @@ body {
     border-radius: 12px;
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 865px) {
     .container {
-        width: 90%;
+        width: 50%;
         top: 35%;
     }
 }
 
-@media screen and (min-width: 471px) {
+@media screen and (max-width: 847px) {
+    .container {
+        width: 60%;
+        top: 35%;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .container {
+        width: 80%;
+        top: 35%;
+    }
+}
+
+@media screen and (max-width: 403px) {
+    .container {
+        width: 90%;
+        top: 50%;
+    }
+}
+
+@media screen and (min-width: 866px) {
     .container {
         width: 370px;
         top: 50%;
@@ -45,12 +65,17 @@ body {
 }
 
 .image-container {
-    height: 100%;
+    max-height: 350px;
     width: 100%;
+    height: 350px;
     background-color: black;
     position: relative;
 }
 
+#selectedImage {
+    width: 100%;
+    height: 100%;
+}
 .file-button {
     position: absolute;
     top: 50%;
@@ -142,4 +167,38 @@ body {
 .upload {
     position: relative;
     
+}
+
+.details-container {
+    position: relative;
+}
+
+.details-container span {
+    position: absolute;
+    bottom: -20px; /* Adjusted to top instead of bottom */
+    left: 0;
+    height: 25px; /* Changed height to 100% */
+    color: black;
+    width: 120px; /* Adjusted width to 20px for better visibility */
+    background-color: coral;
+    content: "Nothing to Copy";
+    border-radius: 6px;
+    padding-inline: 12px;
+    display: none;
+    align-items: center;
+    font-size: 12px;
+}
+
+.unsupported {
+    background-color: crimson;
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+    display: none;
+    z-index: 999;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, -50%);
 }
